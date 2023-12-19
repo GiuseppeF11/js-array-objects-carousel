@@ -13,8 +13,7 @@ console.log('nextBtn' , nextBtn , typeof nextBtn);
 const playBtn = document.querySelector('.playBtn');
 console.log('playBtn' , playBtn , typeof playBtn);
 
-let allItems = document.querySelectorAll('.item');
-console.log('allitems' , allItems , typeof allItems);
+
 
 const item = document.querySelector('.item');
 console.log('item' , item , typeof item);
@@ -55,71 +54,68 @@ const images = [
 
 console.log('images', images, images.length, typeof images);
 
+//Uso il ciclo for per prendere tutti gli oggetti dell'array
 for (let i = 0; i < images.length; i++) {
+    //Creo un div chiamato item ed aggiungo la classe item
+    let item = document.createElement('div');
+    item.classList.add('item');
+
+    // Uso il ciclo forIn per selezionare le chiavi all'interno degli oggetti dell'array
     for (let key in images[i]) {
         console.log('CHIAVE: ' + key + ':', images[i][key]);
-        
-        //Se la chiave è una foto
+
+        //Se la chiave è una foto aggiungo ad item un tag img con dentro la chiave (altrimenti stampo e basta)
         if(key  === 'url') {
-            items.innerHTML += `<img src="${images[i][key]}">`
+            item.innerHTML += `<img src="${images[i][key]}">`
         } else {
-            items.innerHTML += images[i][key] + '<br>';
+            item.innerHTML += images[i][key] + '<br>';
         }
+        
     }
+
+    if (i == 0) {
+        item.classList.add('active')
+    }
+
+    items.append(item);
 }
-
-//Con il for possiamo accedere agli elementi dell'array
-
-for (let i = 0 ; i < images.length ; i++ ) {
-
-
-  let itemActive = 'item';
-
-  if (i == 0) {
-    itemActive += 'active';
-  }
-
-  items.innerHTML += `
-      <div class="${itemActive}">
-          <img src="${images[i][key]}" alt="">
-      </div>`;
-}
-
-//MILESTONE 3
-
-
 
 let imgAttiva = 0;
+
+const allItems = document.querySelectorAll('.item');
+console.log('allitems' , allItems , typeof allItems);
 
 //   BONUS
 var clock = setInterval(autoPlay, 3000);
 function autoPlay() {
+    
+    console.log(allItems , imgAttiva)
   if (imgAttiva < (allItems.length -1)) {
 
-    //Tolgo la classe active dall'elemento attualmente visibile
-  allItems[imgAttiva].classList.remove('active');
+            //Tolgo la classe active dall'elemento attualmente visibile
+        allItems[imgAttiva].classList.remove('active');
 
-  // Incremento la variabile
-  imgAttiva++ ;
+        // Incremento la variabile
+        imgAttiva++ ;
 
-  //Aggiungo la classe active all'elemento successivo
-  allItems[imgAttiva].classList.add('active');
+        //Aggiungo la classe active all'elemento successivo
+        allItems[imgAttiva].classList.add('active');
 
-  playBtn.addEventListener('click', function() {
-    clearInterval(clock)
-  })
-}
+        playBtn.addEventListener('click', function() {
+            clearInterval(clock)
+        })
+    }
 
-// PER IL CICLO INFINITO
+    // PER IL CICLO INFINITO
 
-else if (imgAttiva = (allItems.length -1)) { // Se l'immagine attiva è l'ultima
+    else { // Se l'immagine attiva è l'ultima
 
-allItems[imgAttiva].classList.remove('active');
+        allItems[imgAttiva].classList.remove('active');
 
-imgAttiva = 0 ;  //  Selezionami la prima immagine
+        imgAttiva = 0;  //  Selezionami la prima immagine
 
-allItems[imgAttiva].classList.add('active');  
-}
+        allItems[imgAttiva].classList.add('active');  
+    }
 }
 
 nextBtn.addEventListener('click', function(){

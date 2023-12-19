@@ -23,18 +23,19 @@ body {
    img {
     width: 100%;
     border-radius: 20px;
-    border: 5px solid black;
-   }
-  
-   .item {
-    padding-top: 30px;
-    width: 30vw;
-    margin: 0 auto;
-    display: none;
+    border: 2px solid black;
    }
 
    .items {
-    background-color: bisque;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+
+   }
+
+   .item {
+    display: none;
+    margin: 0 auto;
    }
   
    button {
@@ -43,6 +44,7 @@ body {
     border-radius: 50%;
     background-color: rgb(163, 163, 163);
     position: absolute;
+    bottom: 0;
    }
 
    .prevBtn {
@@ -51,6 +53,11 @@ body {
 
    .nextBtn {
     right: 0;
+   }
+
+   .playBtn {
+    right: 50%;
+    transform: translate( 80%);
    }
   
    i {
